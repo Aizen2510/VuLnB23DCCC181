@@ -36,6 +36,19 @@
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
+	{
+		path:'/study',
+		name: 'appStuty',
+		component: './appStuty',
+		icon: 'BookOutlined ',
+	},
+	{
+		path:'/NumberGuessingGame',
+		name: 'NumberGuessingGame',
+		component:'./game',
+		icon: 'BookOutlined ',
+	},
+	
 
 	// DANH MUC HE THONG
 	// {
