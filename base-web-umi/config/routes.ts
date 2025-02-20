@@ -43,12 +43,13 @@
 		icon: 'BookOutlined ',
 	},
 	{
-		path:'/NumberGuessingGame',
-		name: 'NumberGuessingGame',
-		component:'./game',
-		icon: 'BookOutlined ',
-	},
-	
+		path: '/guessing-game',
+		name: 'Guessing Game',
+		component: './GuessingGame/GuessingGame',
+		hideInMenu: false,
+	  },
+	  
+
 
 	// DANH MUC HE THONG
 	// {
