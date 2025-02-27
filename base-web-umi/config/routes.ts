@@ -40,14 +40,16 @@
 		path:'/study',
 		name: 'appStuty',
 		component: './appStuty',
-		icon: 'BookOutlined ',
+		icon: 'BookOutlined',
 	},
 	{
 		path: '/guessing-game',
 		name: 'Guessing Game',
 		component: './GuessingGame/GuessingGame',
 		hideInMenu: false,
-	  },
+		icon: 'FieldNumberOutlined',
+	},
+	  
 	  
 
 

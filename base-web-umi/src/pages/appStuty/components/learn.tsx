@@ -1,6 +1,7 @@
-import { Form, Input, InputNumber, TimePicker, Button, Progress, Card, Modal } from 'antd';
+import { Form, Input, InputNumber, TimePicker, Button, Progress, Modal } from 'antd';
 import { useState, useEffect } from 'react';
 import './learn.less';
+import moment from 'moment';
 
 // Định nghĩa interface cho môn học
 interface Sub {
@@ -85,75 +86,71 @@ export default function SubInfor({ sub2, onClone, onEdit, onDelete }: SubEdit) {
                     </div>
 
                     <div className="subject-modal__body">
-                        <div className="form-group">
-                            <label>Tên Môn học</label>
-                            <input
-                                title="Tên Môn học"
-                                value={subData.name}
-                                onChange={(e) => handleChangeInput("name", e.target.value)}
-                                placeholder="Nhập tên môn học"
-                            />
-                        </div>
+                        <Form form={form} layout="vertical">
+                            <Form.Item label="Tên Môn học">
+                                <Input
+                                    value={subData.name}
+                                    onChange={(e) => handleChangeInput("name", e.target.value)}
+                                    placeholder="Nhập tên môn học"
+                                />
+                            </Form.Item>
 
-                        <div className="form-group">
-                            <label>Giờ Học</label>
-                            <input
-                                title="nq"
-                                type="time"
-                                value={subData.time}
-                                onChange={(e) => handleChangeInput("time", e.target.value)}
-                            />
-                        </div>
+                            <Form.Item label="Giờ Học">
+                                <TimePicker
+                                    value={subData.time ? moment(subData.time, 'HH:mm') : null}
+                                    onChange={(time, timeString) => handleChangeInput("time", timeString)}
+                                    format="HH:mm"
+                                    placeholder="Chọn giờ học"
+                                />
+                            </Form.Item>
 
-                        <div className="form-group">
-                            <label>Thời gian học (phút)</label>
-                            <input
-                                title="time"
-                                type="number"
-                                value={subData.timedate}
-                                onChange={(e) => handleChangeInput("timedate", e.target.value)}
-                            />
-                        </div>
+                            <Form.Item label="Thời gian học (phút)">
+                                <InputNumber
+                                    value={subData.timedate}
+                                    onChange={(value) => handleChangeInput("timedate", String(value))}
+                                    min="0"
+                                    placeholder="Nhập thời gian học"
+                                />
+                            </Form.Item>
 
-                        <div className="form-group">
-                            <label>Nội dung môn học</label>
-                            <textarea
-                                value={subData.content}
-                                onChange={(e) => handleChangeInput("content", e.target.value)}
-                                placeholder="Nhập nội dung môn học"
-                            />
-                        </div>
+                            <Form.Item label="Nội dung môn học">
+                                <Input.TextArea
+                                    value={subData.content}
+                                    onChange={(e) => handleChangeInput("content", e.target.value)}
+                                    placeholder="Nhập nội dung môn học"
+                                />
+                            </Form.Item>
 
-                        <div className="form-group">
-                            <label>Ghi chú</label>
-                            <textarea
-                                title="Ghi chú"
-                                value={subData.note || ""}
-                                onChange={(e) => handleChangeInput("note", e.target.value)}
-                                placeholder="Nhập ghi chú"
-                            />
-                        </div>
+                            <Form.Item label="Ghi chú">
+                                <Input.TextArea
+                                    value={subData.note || ''}
+                                    onChange={(e) => handleChangeInput("note", e.target.value)}
+                                    placeholder="Nhập ghi chú"
+                                />
+                            </Form.Item>
 
-                        <div className="goals-section">
-                            <label>Mục tiêu nghiên cứu hàng tháng (giờ)</label>
-                            <input
-                                title="Mục tiêu nghiên cứu hàng tháng"
-                                type="number"
-                                value={goal.monTarget}
-                                onChange={(e) => handleChangeGoal("monTarget", Number.parseInt(e.target.value))}
-                                placeholder="Nhập mục tiêu nghiên cứu hàng tháng"
-                            />
+                            <Form.Item label="Mục tiêu nghiên cứu hàng tháng (giờ)">
+                                <InputNumber
+                                    value={goal.monTarget}
+                                    onChange={(value) => handleChangeGoal("monTarget", value ?? 0)}
+                                    min={0}
+                                    placeholder="Nhập mục tiêu nghiên cứu hàng tháng"
+                                />
+                            </Form.Item>
 
                             <div className="goals-section__progress-bar">
-                                <div className="goals-section__progress-bar-fill" style={{ width: `${progressPercentage}%` }} />
+                                <Progress
+                                    percent={progressPercentage}
+                                    status="active"
+                                />
                             </div>
                             <p>{Math.round(progressPercentage)}% hoàn thành</p>
-                        </div>
+                        </Form>
                     </div>
 
                     <div className="subject-modal__footer">
-                        <button className="button button--secondary" onClick={onClone}>Hủy</button>
-                        <button className="button button--primary" onClick={handleSave}>Lưu thay đổi</button>
+                        <Button className="button button--secondary" onClick={onClone}>Hủy</Button>
+                        <Button type="primary" className="button button--primary" onClick={handleSave}>Lưu thay đổi</Button>
                     </div>
                 </div>
             </div>
