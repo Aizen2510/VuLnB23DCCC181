@@ -1,6 +1,6 @@
-﻿import component from "@/locales/en-US/component";
-import Icon from "@ant-design/icons";
-import { icons } from "antd/lib/image/PreviewGroup";
+﻿import component from '@/locales/en-US/component';
+import Icon from '@ant-design/icons';
+import { icons } from 'antd/lib/image/PreviewGroup';
 
 export default [
 	{
@@ -41,7 +41,7 @@ export default [
 		icon: 'ArrowsAltOutlined',
 	},
 	{
-		path:'/study',
+		path: '/study',
 		name: 'appStuty',
 		component: './appStuty',
 		icon: 'BookOutlined',
@@ -56,19 +56,19 @@ export default [
 	{
 		path: '/rock-paper-scissor-game',
 		name: 'Rock Paper Scissor Paper',
-		component: 'RockPaperScissorsGame/rockPaperScisssorsGame',
+		component: './RockPaperScisssorsGame/rockPaperScisssorsGame',
 		hideInMenu: false,
-		icon: 'FieldNumberOutlined'
+		icon: 'FieldNumberOutlined',
 	},
 	{
 		path: '/',
-		name: 'Ngân Hàng Câu Hỏi', 
+		name: 'Ngân Hàng Câu Hỏi',
 		icon: 'LineChartOutlined',
 		routes: [
 			{
 				path: '/subjectManage',
-				name: 'Quản Lí Môn Học', 
-				component: './Subject/index.tsx', 
+				name: 'Quản Lí Môn Học',
+				component: './Subject/index.tsx',
 			},
 			{
 				path: '/examManaget',
@@ -77,12 +77,6 @@ export default [
 			},
 		],
 	},
-
-	
-
-	
-
-
 
 	// DANH MUC HE THONG
 	// {
