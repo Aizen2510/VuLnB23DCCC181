@@ -1,4 +1,8 @@
-﻿export default [
+﻿import component from "@/locales/en-US/component";
+import Icon from "@ant-design/icons";
+import { icons } from "antd/lib/image/PreviewGroup";
+
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -49,8 +53,28 @@
 		hideInMenu: false,
 		icon: 'FieldNumberOutlined',
 	},
-	  
-	  
+	{
+		path: '/',
+		name: 'Ngân Hàng Câu Hỏi', 
+		icon: 'LineChartOutlined',
+		routes: [
+			{
+				path: '/subjectManage',
+				name: 'Quản Lí Môn Học', 
+				component: './Subject/index.tsx', 
+			},
+			{
+				path: '/examManaget',
+				name: 'Quản Lí Đề Thi',
+				component: './Exam',
+			},
+		],
+	},
+
+	
+
+	
+
 
 
 	// DANH MUC HE THONG

@@ -26,7 +26,7 @@ interface SubEdit {
     onClone: () => void;
     onEdit: (id: string) => void;
     onDelete: (id: string) => void;
-}
+}// tach ra file rieng 
 
 export default function SubInfor({ sub2, onClone, onEdit, onDelete }: SubEdit) {
     const [form] = Form.useForm();
@@ -40,8 +40,8 @@ export default function SubInfor({ sub2, onClone, onEdit, onDelete }: SubEdit) {
     });
 
     const [goal, setGoal] = useState<SubGoal>({
-        monTarget: 5,
-        countStudy: 2,
+        monTarget: 100,
+        countStudy: 100,
         specGoal: "Cần Phải Học Nhiều Hơn Nữa",
     });
 
@@ -55,7 +55,7 @@ export default function SubInfor({ sub2, onClone, onEdit, onDelete }: SubEdit) {
             note: sub2[0]?.note || '',
         });
     }, [sub2]);
-
+    // cập nhât thông tin môn học khi co su thay doi trong sub2
     const handleChangeInput = (field: keyof Sub, value: string) => {
         setSubData((prev) => ({ ...prev, [field]: value }));
     };
@@ -70,10 +70,14 @@ export default function SubInfor({ sub2, onClone, onEdit, onDelete }: SubEdit) {
         const subsObj: Sub[] = JSON.parse(subsString || '[]');
         const newSubsObj = subsObj.map((sub) => (sub.id === updatedSub.id ? updatedSub : sub));
         localStorage.setItem('subs', JSON.stringify(newSubsObj));
-        onClone();
+        onClone(); // 
     };
+    //Được sử dụng để tính tỷ lệ phần trăm tiến độ hoàn thành mục tiêu học tập.
 
-    const progressPercentage = (goal.countStudy / goal.monTarget) * 100;
+//Giải thích:
+//goal.countStudy: Là số giờ mà người học đã dành ra để học.
+//goal.monTarget: Là tổng số giờ mục tiêu học tập trong một khoảng thời gian nhất định
+    const progressPercentage = (goal.countStudy / goal.monTarget);
 
     return (
         <div>

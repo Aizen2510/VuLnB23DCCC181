@@ -15,7 +15,7 @@ export default function SubjectManagement() {
   useEffect(() => {
     getSubsList();
   }, []);
-
+  //Đây là hàm được gọi khi người dùng submit form
   const handleSubmit = (values: { name: string }) => {
     if (currentSubs) {
       editSub(values.name);
@@ -25,7 +25,7 @@ export default function SubjectManagement() {
     }
     form.resetFields();
   };
-
+  //Đây là hàm xử lý sự kiện khi người dùng nhấp vào một "card" môn học
   const handleCardClick = (sub: any) => {
     setSelectedSub(sub);
     setOpenForm(true);

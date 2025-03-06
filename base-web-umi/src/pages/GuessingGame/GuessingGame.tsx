@@ -9,7 +9,7 @@ const GuessingGame: React.FC = () => {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
   const [guess, setGuess] = useState<string>("");
   const [turn, setTurn] = useState<number>(10);
-  const [gameState, setGameState] = useState<"waiting" | "lost" | "playing" | "win">("waiting");
+  const [gameState, setGameState] = useState<"waiting" | "lost" | "playing" | "win">("waiting");// new 
   const [previousGuesses, setPreviousGuesses] = useState<{ value: number; result: string }[]>([]);
   const [feedback, setFeedback] = useState<string>("");
   const [form] = Form.useForm();
@@ -35,7 +35,7 @@ const GuessingGame: React.FC = () => {
 
     if (isNaN(guessedNumber) || guessedNumber < 1 || guessedNumber > 100) {
       setFeedback("Vui lòng nhập một số từ 1 đến 100!");
-      return;
+      return;// giong 
     }
 
     const turnRemaining = turn - 1;
@@ -43,7 +43,7 @@ const GuessingGame: React.FC = () => {
     const guessResult =
       guessedNumber < (randomNumber ?? 0) ? "low" : guessedNumber > (randomNumber ?? 0) ? "high" : "correct";
 
-    setPreviousGuesses([...previousGuesses, { value: guessedNumber, result: guessResult }]);
+    setPreviousGuesses([...previousGuesses, { value: guessedNumber, result: guessResult }]);// ls 
 
     if (guessedNumber === randomNumber) {
       setFeedback("Chúc mừng! Bạn đã đoán đúng!");
@@ -57,7 +57,7 @@ const GuessingGame: React.FC = () => {
           ? `Bạn đoán quá thấp! Còn ${turnRemaining} lượt.`
           : `Bạn đoán quá cao! Còn ${turnRemaining} lượt.`
       );
-    }
+    }//ok 
     setGuess("");
     form.resetFields();
   };
@@ -65,6 +65,7 @@ const GuessingGame: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh", display: "flex", justifyContent: "center" }}>
       <Header style={{ background: "transparent", padding: "20px" }}>
+        {/* tách ra model riêngriêng */}
         <Title level={2} style={{ textAlign: "center" }}>🎮 Trò Chơi Đoán Số</Title>
       </Header>
       <Content style={{ padding: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
