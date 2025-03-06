@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Exam } from "../../services/intertestQuets/Exam";
-import { Questions } from "../../services/intertestQuets/Quetions";
+import { Question } from "../../services/intertestQuets/Quetions";
 import { QuestionsLevel } from "../../services/intertestQuets/Quetions";
 
 export const useManageExam = () => {
@@ -8,19 +8,13 @@ export const useManageExam = () => {
     const [quantity, setQuantity] = useState<number>(0);
     const [level, setLevel] = useState<QuestionsLevel>("Dễ");
     const [knowledgeBlock, setKnowledgeBlock] = useState<string>("");
-    const [questions, setQuestions] = useState<Questions[]>([]);
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [examList, setExamList] = useState<Exam[]>([]);
     const [savedStructures, setSavedStructures] = useState<Exam[]>([]);
     const [error, setError] = useState<string>("");
-    const [questionBank, setQuestionBank] = useState<Questions[]>([  
-        { id: 1, content: "Câu hỏi 1", subject: "Toán", level: "Dễ", knowledgeBlock: "Hàm số" },  
-        { id: 2, content: "Câu hỏi 2", subject: "Văn", level: "Trung Bình", knowledgeBlock: "Thơ" },  
-        { id: 3, content: "Câu hỏi 3", subject: "Lý", level: "Khó", knowledgeBlock: "Điện" },  
-        { id: 4, content: "Câu hỏi 4", subject: "Hóa", level: "Cực Khó", knowledgeBlock: "Phản ứng" },  
-        { id: 5, content: "Câu hỏi 5", subject: "Sinh", level: "Dễ", knowledgeBlock: "Gen" }  
-    ]);
+    const [questionBank, setQuestionBank] = useState<Question[]>([]);
 
-    const searchQuestions = (subject: string, level?: QuestionsLevel, knowledgeBlock?: string): Questions[] => {
+    const searchQuestions = (subject: string, level?: QuestionsLevel, knowledgeBlock?: string): Question[] => {
         return questionBank.filter(q =>
             q.subject === subject &&
             (!level || q.level === level) &&
@@ -28,7 +22,7 @@ export const useManageExam = () => {
         );
     };
 
-    const fetchRandomQuestions = (quantity: number, level: QuestionsLevel, knowledgeBlock: string): Questions[] => {
+    const fetchRandomQuestions = (quantity: number, level: QuestionsLevel, knowledgeBlock: string): Question[] => {
         let filteredQuestions = questionBank.filter(q => q.level === level && q.knowledgeBlock === knowledgeBlock);
         return filteredQuestions.slice(0, quantity);
     };
@@ -46,6 +40,8 @@ export const useManageExam = () => {
         }
 
         const newExam: Exam = {
+            id: examList.length + 1,
+            subject: "Default Subject",
             quantity,
             level,
             knowledgeBlock,
@@ -60,9 +56,8 @@ export const useManageExam = () => {
         setIsModalOpen(false);
         setError("");
     };
-
+    const structure: Exam = { id: savedStructures.length + 1, subject: "Default Subject", quantity, level, knowledgeBlock, questions };
     const saveExamStructure = () => {
-        const structure: Exam = { quantity, level, knowledgeBlock, questions };
         setSavedStructures([...savedStructures, structure]);
     };
 

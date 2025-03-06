@@ -68,7 +68,19 @@ export default [
 				name: 'Quản Lí Đề Thi',
 				component: './Exam',
 			},
+			{
+				path: '/questionManaget',
+				name: 'Quản Lí Câu Hỏi',
+				component: './question',
+			},
 		],
+	},
+	{
+		path: '/RockPaperGame',
+		name: 'RockPaperGame',
+		component: './RockPaperScisssorsGame/rockPaperScisssorsGame',
+		hideInMenu: false,
+		icon: 'FieldNumberOutlined'
 	},
 
 	

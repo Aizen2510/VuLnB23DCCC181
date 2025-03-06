@@ -4,6 +4,6 @@ export interface Question {
     id: number;
     content: string;
     subject: string;
-    level: QuestionsLevel;
+    level: string;
     knowledgeBlock: string;
 }
